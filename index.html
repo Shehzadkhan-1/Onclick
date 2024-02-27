@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Time and Click Coordinates</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        #time {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        #coordinates {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="time"></div>
+<div id="coordinates"></div>
+
+<script>
+    // Function to update the current time
+    function updateTime() {
+        var now = new Date();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+
+        // Format the time
+        var formattedTime = `${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        
+        // Display the time
+        document.getElementById('time').innerText = `Current Time: ${formattedTime}`;
+    }
+
+    // Function to handle click event and display coordinates
+    function handleMouseClick(event) {
+        var x = event.clientX;
+        var y = event.clientY;
+
+        // Display the coordinates
+        document.getElementById('coordinates').innerText = `Click Coordinates: (${x}, ${y})`;
+    }
+
+    // Update time initially
+    updateTime();
+
+    // Set up click event listener
+    document.addEventListener('click', handleMouseClick);
+
+    // Update time every second
+    setInterval(updateTime, 1000);
+</script>
+
+</body>
+</html>
